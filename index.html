@@ -2,36 +2,21 @@
 <html lang="ur" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ویڈیو ڈاؤنلوڈر</title>
+    <title>پریمیم ویڈیو ڈاؤنلوڈر</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="card">
-    <div class="header">
-        <div class="icon">⬇️</div>
+    <div class="main-card">
         <h1>ویڈیو ڈاؤنلوڈر</h1>
-        <p>فیس بک، یوٹیوب اور ٹک ٹاک سے ویڈیوز آسانی سے ڈاؤن لوڈ کریں</p>
+        <div class="platforms">
+            <button class="p-btn active" onclick="setPlatform(this, 'youtube')">یوٹیوب</button>
+            <button class="p-btn" onclick="setPlatform(this, 'facebook')">فیس بک</button>
+            <button class="p-btn" onclick="setPlatform(this, 'tiktok')">ٹک ٹاک</button>
+        </div>
+        <input type="text" id="urlInput" placeholder="لنک یہاں پیسٹ کریں...">
+        <button class="download-btn" onclick="downloadVideo()">ڈاؤن لوڈ کریں ⬇️</button>
+        <p id="msg"></p>
     </div>
-
-    <p class="label">پلیٹ فارم منتخب کریں</p>
-    <div class="platforms">
-        <button class="p-btn" onclick="setPlatform('facebook')">فیس بک</button>
-        <button class="p-btn active" onclick="setPlatform('youtube')">یوٹیوب</button>
-        <button class="p-btn" onclick="setPlatform('tiktok')">ٹک ٹاک</button>
-    </div>
-
-    <p class="label">ویڈیو لنک پیسٹ کریں</p>
-    <input type="text" id="urlInput" placeholder="یہاں ویڈیو کا لنک پیسٹ کریں...">
-    
-    <button class="download-btn" onclick="processDownload()">ڈاؤن لوڈ کریں ⬇️</button>
-
-    <div class="footer-note">
-        ✅ ہم آپ کی پرائیویسی کا احترام کرتے ہیں۔ آپ کا ڈیٹا محفوظ ہے۔
-    </div>
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
