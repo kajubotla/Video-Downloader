@@ -2,21 +2,36 @@
 <html lang="ur" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>پریمیم ویڈیو ڈاؤنلوڈر</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="main-card">
-        <h1>ویڈیو ڈاؤنلوڈر</h1>
-        <div class="platforms">
-            <button class="p-btn active" onclick="setPlatform(this, 'youtube')">یوٹیوب</button>
-            <button class="p-btn" onclick="setPlatform(this, 'facebook')">فیس بک</button>
-            <button class="p-btn" onclick="setPlatform(this, 'tiktok')">ٹک ٹاک</button>
+
+<div class="container">
+    <div class="app-card">
+        <header>
+            <h1>ویڈیو ڈاؤنلوڈر</h1>
+            <p>سوشل میڈیا سے ویڈیوز محفوظ کریں</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="setPlatform(this, 'youtube')">YouTube</button>
+            <button class="tab-btn" onclick="setPlatform(this, 'facebook')">Facebook</button>
+            <button class="tab-btn" onclick="setPlatform(this, 'tiktok')">TikTok</button>
         </div>
-        <input type="text" id="urlInput" placeholder="لنک یہاں پیسٹ کریں...">
-        <button class="download-btn" onclick="downloadVideo()">ڈاؤن لوڈ کریں ⬇️</button>
-        <p id="msg"></p>
+
+        <div class="input-area">
+            <input type="text" id="urlInput" placeholder="ویڈیو کا لنک یہاں پیسٹ کریں...">
+            <button class="action-btn" onclick="openDownloader()">ڈاؤن لوڈ کریں ⬇️</button>
+        </div>
+
+        <footer>
+            <p>✅ محفوظ اور تیز رفتار ڈاؤن لوڈنگ</p>
+        </footer>
     </div>
-    <script src="script.js"></script>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
