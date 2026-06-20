@@ -3,26 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پروفیشنل ویڈیو ڈاؤنلوڈر</title>
+    <title>ویڈیو ڈاؤنلوڈر</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-    <h1>ویڈیو ڈاؤنلوڈر</h1>
-    <p>اپنا پلیٹ فارم منتخب کریں:</p>
-
-    <div class="platform-tabs">
-        <button class="tab-btn" onclick="selectPlatform(this, 'youtube')">YouTube</button>
-        <button class="tab-btn" onclick="selectPlatform(this, 'facebook')">Facebook</button>
-        <button class="tab-btn" onclick="selectPlatform(this, 'tiktok')">TikTok</button>
+<div class="card">
+    <div class="header">
+        <div class="icon">⬇️</div>
+        <h1>ویڈیو ڈاؤنلوڈر</h1>
+        <p>فیس بک، یوٹیوب اور ٹک ٹاک سے ویڈیوز آسانی سے ڈاؤن لوڈ کریں</p>
     </div>
 
+    <p class="label">پلیٹ فارم منتخب کریں</p>
+    <div class="platforms">
+        <button class="p-btn" onclick="setPlatform('facebook')">فیس بک</button>
+        <button class="p-btn active" onclick="setPlatform('youtube')">یوٹیوب</button>
+        <button class="p-btn" onclick="setPlatform('tiktok')">ٹک ٹاک</button>
+    </div>
+
+    <p class="label">ویڈیو لنک پیسٹ کریں</p>
     <input type="text" id="urlInput" placeholder="یہاں ویڈیو کا لنک پیسٹ کریں...">
     
-    <button class="main-btn" onclick="downloadFile()">فوری ڈاؤن لوڈ کریں</button>
-    
-    <p id="status" style="margin-top: 15px; color: #2e7d32; font-weight: bold;"></p>
+    <button class="download-btn" onclick="processDownload()">ڈاؤن لوڈ کریں ⬇️</button>
+
+    <div class="footer-note">
+        ✅ ہم آپ کی پرائیویسی کا احترام کرتے ہیں۔ آپ کا ڈیٹا محفوظ ہے۔
+    </div>
 </div>
 
 <script src="script.js"></script>
