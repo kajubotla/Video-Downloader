@@ -1,24 +1,36 @@
+let selectedPlatform = 'youtube';
+
+// پلیٹ فارم منتخب کرنے کا فنکشن
+function selectPlatform(btn, platform) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedPlatform = platform;
+}
+
+// ڈاؤن لوڈ کا فنکشن
 async function downloadFile() {
     const url = document.getElementById('urlInput').value;
-    if (!url) { alert("پہلے لنک ڈالیں!"); return; }
-
     const status = document.getElementById('status');
-    status.innerText = "فائل تیار ہو رہی ہے، انتظار کریں...";
+    
+    if (!url) { alert("براہ کرم لنک درج کریں!"); return; }
+
+    status.innerText = "ویڈیو تیار ہو رہی ہے، براہ کرم انتظار کریں...";
 
     try {
         const response = await fetch("https://api.cobalt.tools/api/json", {
             method: "POST",
             headers: { "Content-Type": "application/json", "Accept": "application/json" },
-            body: JSON.stringify({ url: url, filenameStyle: "classic" })
+            body: JSON.stringify({ url: url })
         });
 
         const data = await response.json();
         if (data.url) {
-            window.location.href = data.url; // یہ براؤزر کو خود بخود ڈاؤن لوڈ پر مجبور کر دے گا
+            window.location.href = data.url;
+            status.innerText = "ڈاؤن لوڈ شروع ہو رہا ہے!";
         } else {
-            alert("لنک کام نہیں کر رہا، براہ کرم دوسرا لنک آزمائیں");
+            status.innerText = "معذرت، لنک کام نہیں کر رہا۔";
         }
     } catch (e) {
-        alert("کنکشن میں مسئلہ ہے!");
+        status.innerText = "ایرر: براہ کرم دوبارہ کوشش کریں۔";
     }
 }
