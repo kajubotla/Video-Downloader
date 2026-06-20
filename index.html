@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آل ان ون ویڈیو ڈاؤنلوڈر</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ویڈیو ڈاؤنلوڈر</h1>
+        
+        <div class="platform-tabs">
+            <button onclick="setPlatform('youtube')">YouTube</button>
+            <button onclick="setPlatform('facebook')">Facebook</button>
+            <button onclick="setPlatform('tiktok')">TikTok</button>
+        </div>
+
+        <input type="text" id="urlInput" placeholder="ویڈیو کا لنک یہاں پیسٹ کریں...">
+        <button class="main-btn" onclick="showFormats()">ڈاؤن لوڈ لنک دکھائیں</button>
+
+        <div id="formatArea" class="hidden">
+            <p>فارمیٹ منتخب کریں:</p>
+            <select id="formatSelect">
+                <option value="hd">MP4 (HD)</option>
+                <option value="sd">MP4 (SD)</option>
+                <option value="audio">MP3 (آڈیو)</option>
+            </select>
+            <br><br>
+            <button class="download-btn" onclick="downloadFile()">فائل ڈاؤن لوڈ کریں</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
