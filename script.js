@@ -1,24 +1,24 @@
-let selectedPlatform = 'youtube';
-
-function setPlatform(platform) {
-    selectedPlatform = platform;
-    alert(platform + " منتخب ہو گیا ہے۔ اب لنک پیسٹ کریں۔");
-}
-
-function showFormats() {
+async function downloadFile() {
     const url = document.getElementById('urlInput').value;
-    if (!url) {
-        alert("براہ کرم پہلے لنک درج کریں!");
-        return;
+    if (!url) { alert("پہلے لنک ڈالیں!"); return; }
+
+    const status = document.getElementById('status');
+    status.innerText = "فائل تیار ہو رہی ہے، انتظار کریں...";
+
+    try {
+        const response = await fetch("https://api.cobalt.tools/api/json", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify({ url: url, filenameStyle: "classic" })
+        });
+
+        const data = await response.json();
+        if (data.url) {
+            window.location.href = data.url; // یہ براؤزر کو خود بخود ڈاؤن لوڈ پر مجبور کر دے گا
+        } else {
+            alert("لنک کام نہیں کر رہا، براہ کرم دوسرا لنک آزمائیں");
+        }
+    } catch (e) {
+        alert("کنکشن میں مسئلہ ہے!");
     }
-    document.getElementById('formatArea').classList.remove('hidden');
-}
-
-function downloadFile() {
-    const url = document.getElementById('urlInput').value;
-    const format = document.getElementById('formatSelect').value;
-    
-    // یہ آپ کو ڈاؤن لوڈ پیج پر بھیج دے گا
-    alert("آپ کی " + selectedPlatform + " ویڈیو ڈاؤن لوڈ ہو رہی ہے...");
-    window.open(`https://snapsave.app/search?url=${encodeURIComponent(url)}`, '_blank');
 }
