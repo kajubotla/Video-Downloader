@@ -1,31 +1,33 @@
 let currentPlatform = 'youtube';
-
 function setPlatform(btn, platform) {
     currentPlatform = platform;
-    // بٹن کو ایکٹو کرنے کے لیے
     document.querySelectorAll('.p-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 }
 
-function processDownload() {
+async function downloadVideo() {
     const url = document.getElementById('urlInput').value.trim();
-    
-    if (!url) { 
-        alert("براہ کرم پہلے لنک پیسٹ کریں!"); 
-        return; 
-    }
+    if (!url) { alert("لنک درج کریں!"); return; }
 
-    // ہر پلیٹ فارم کے لیے بہترین اور تیز ترین یو آر ایل
-    let targetUrl = "";
+    // کوبالٹ کی سب سے زیادہ سٹیبل سروس
+    const apiUrl = "https://cobalt.tools/api/json";
     
-    if (currentPlatform === 'youtube') {
-        targetUrl = `https://loader.to/api/button/?url=${encodeURIComponent(url)}`;
-    } else if (currentPlatform === 'facebook') {
-        targetUrl = `https://fdown.net/download.php?url=${encodeURIComponent(url)}`;
-    } else if (currentPlatform === 'tiktok') {
-        targetUrl = `https://ssstik.io/en?url=${encodeURIComponent(url)}`;
+    try {
+        // یہ ریکویسٹ کوبالٹ کو بھیجے گی
+        const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ url: url, vQuality: "720" })
+        });
+        
+        const data = await response.json();
+        if (data.url) {
+            window.location.href = data.url; // اگر ڈائریکٹ لنک ملا تو یہیں سے ڈاؤن لوڈ ہوگا
+        } else {
+            // اگر API فوری کام نہ کرے تو یوزر کو صرف ایک کلک پر وہاں بھیج دیں
+            window.open(`https://cobalt.tools/?url=${encodeURIComponent(url)}`, '_blank');
+        }
+    } catch (e) {
+        window.open(`https://cobalt.tools/?url=${encodeURIComponent(url)}`, '_blank');
     }
-
-    // یہ کمانڈ یوزر کو نئی ونڈو میں بھیج دے گی، کوئی ایرر نہیں آئے گا
-    window.open(targetUrl, '_blank');
 }
